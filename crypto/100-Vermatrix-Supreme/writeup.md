@@ -22,11 +22,11 @@ After using boolean algebra to simplify it, you find that it is equivalent to a 
 
 Then, I added print statements to see what is being XORed with what and what the result is.
 
-[Image Here]
+https://github.com/Alaska47/HackTheVote-2016-Writeups/blob/master/crypto/100-Vermatrix-Supreme/xors1.PNG
 
 It seems that the nine IV values are each being XORed with two values in the seed. Next we just have to discover which index of IV is being XORed with which index of the seed.
 
-[Image Here]
+https://github.com/Alaska47/HackTheVote-2016-Writeups/blob/master/crypto/100-Vermatrix-Supreme/xors2.PNG
 
 We can see the first value in IV is being XORed with the 1st and 9th value in seed. Then, the second value in IV is being XORed by the 4th and 13th. Then the third is with the 7th and 16th, and so on.
 Then, the end result is what res is.
@@ -69,6 +69,6 @@ s.shutdown(socket.SHUT_WR)
 s.close()
 ```
 
-[Image Here]
+https://github.com/Alaska47/HackTheVote-2016-Writeups/blob/master/crypto/100-Vermatrix-Supreme/flag.PNG
 
 flag{IV_wh4t_y0u_DiD_Th3r3}
