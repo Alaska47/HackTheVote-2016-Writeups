@@ -1,5 +1,10 @@
-Looking at the problem statement, we can see some characters are capitalized: APNG
 >Somebody leAked TrumP's favorite colors, looks like they used a really esoteric format. Some chiNese hacker named "DanGer Mouse" provided us the leak, getting this crucial info could really sway voters at the polls! [trump_likes_colors.png](https://s3.amazonaws.com/hackthevote/trump_likes_colors.bcddf8152cf2848c058310655c280a7dbb4f22fcc3687f00a26b6e9a57657dc4.png)
+
+We are given this image:
+
+![trump_likes_colors.png](https://s3.amazonaws.com/hackthevote/trump_likes_colors.bcddf8152cf2848c058310655c280a7dbb4f22fcc3687f00a26b6e9a57657dc4.png)
+
+Looking at the problem statement, we can see some characters are capitalized: APNG
 
 This tells us that the file might be an animated PNG. We can use ffmpeg to extract all the frames from the file.
 
