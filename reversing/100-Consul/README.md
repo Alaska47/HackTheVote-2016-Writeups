@@ -80,7 +80,7 @@ Then, we can run nm on the file to look at the symbols and data of the file.
                  U usleep@@GLIBC_2.2.5
 ```	 
 
-We can see that there is local data stored at `b` `b0` `b1` `b2` `b3` denoted by `0`
+We can see that there is local data stored at `b` `b0` `b1` `b2` `b3` denoted by `d`
 
 We can also see a multitude of interesting functions denoted by `T`
 `help` `real_help` `fake_help``dont_call_me` `c55` `c8` `c5` `c3` `c2` `c1_` `c1`
