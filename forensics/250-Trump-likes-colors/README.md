@@ -3,6 +3,7 @@
 We are given this image:
 
 ![trump_likes_colors.png](https://raw.githubusercontent.com/Alaska47/HackTheVote-2016-Writeups/master/forensics/250-Trump-likes-colors/trump_likes_colors.png)
+
 Looking at the problem statement, we can see some characters are capitalized: APNG
 
 This tells us that the file might be an animated PNG. We can use ffmpeg to extract all the frames from the file.
