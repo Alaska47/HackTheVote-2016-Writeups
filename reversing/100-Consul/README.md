@@ -90,8 +90,11 @@ Hmmm interesting... 1, 1, 2, 3, 5, 8... It seems like the fibonacci sequence to 
 We can then use gdb to call these functions and see what they do.
 
 >gdb consul.dcdcdac48cdb5ca5bc1ec29ddc53fb554d814d12094ba0e82f84e0abef065711
+
 >break main
+
 >run
+
 >call real_help()
 
 We can confirm that the fibonacci sequence has something to do with this problem by looking at the output of `real_help`
