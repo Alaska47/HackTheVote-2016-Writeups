@@ -1,6 +1,7 @@
 #Problem Statement
 
 >Bernie Sanders 2018
+
 >[consul](https://s3.amazonaws.com/hackthevote/consul.dcdcdac48cdb5ca5bc1ec29ddc53fb554d814d12094ba0e82f84e0abef065711)
 
 #Solution
@@ -94,9 +95,9 @@ We can then use gdb to call these functions and see what they do.
 >call real_help()
 
 We can confirm that the fibonacci sequence has something to do with this problem by looking at the output of `real_help`
-
->Leonardo De Pisa? Who's that–The next president?
-
+```
+Leonardo De Pisa? Who's that–The next president?
+```
 If you google this, fibonacci is the first result.
 
 Then, we proceeded to calling c1, c1_, c2, c3, c5, c8 in order and find that c8 gives a segmentation fault. So we use objdump to decompile the program look at the code for the function c8
@@ -123,7 +124,7 @@ Then, we proceeded to calling c1, c1_, c2, c3, c5, c8 in order and find that c8 
 Hmm it's messing with the data at 0x601360 as denoted by the # comments. Let's take a look what is around that address
 
 >x/80x 0x601320
->Note: we use 0x601320 because we want to see the data before and after that address.
+Note: we use 0x601320 because we want to see the data before and after that address.
 
 We can see that there are interesting values before 0x601360
 
