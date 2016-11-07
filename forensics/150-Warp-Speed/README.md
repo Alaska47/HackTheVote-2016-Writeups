@@ -15,7 +15,7 @@ Knowing this, we can split the image up into 500x8 pieces using Imagemagick with
 
 The command creates 64 new [images](https://raw.githubusercontent.com/Alaska47/HackTheVote-2016-Writeups/master/forensics/150-Warp-Speed/warp_left.zip) from the original one.
 
-If we play around with the new sections using an image editor (I used [Pixlr](pixlr.com/editor/)), we see that each new section fits with the previous when offset by four pixels. 
+If we play around with the new sections using an image editor (I used [Pixlr](https://www.pixlr.com/editor/)), we see that each new section fits with the previous when offset by four pixels. 
 
 With this new information, we can write a Python program to piece together the images in the right way to recreate the original.
 
