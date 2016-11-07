@@ -103,20 +103,22 @@ Then, we proceeded to calling c1, c1_, c2, c3, c5, c8 in order and find that c8 
 
 >objdump -d consul.dcdcdac48cdb5ca5bc1ec29ddc53fb554d814d12094ba0e82f84e0abef065711
 
->0000000000400a09 <c8>:
->  400a09:       55                      push   %rbp
->  400a0a:       48 89 e5                mov    %rsp,%rbp
->  400a0d:       8b 05 4d 09 20 00       mov    0x20094d(%rip),%eax        # 601360 <mem>
->  400a13:       83 c0 09                add    $0x9,%eax
->  400a16:       89 05 44 09 20 00       mov    %eax,0x200944(%rip)        # 601360 <mem>
->  400a1c:       bf 80 12 60 00          mov    $0x601280,%edi
->  400a21:       e8 12 fd ff ff          callq  400738 <sub_9F36>
->  400a26:       48 89 c6                mov    %rax,%rsi
->  400a29:       bf 0c 0c 40 00          mov    $0x400c0c,%edi
->  400a2e:       b8 00 00 00 00          mov    $0x0,%eax
->  400a33:       e8 c8 fa ff ff          callq  400500 <printf@plt>
->  400a38:       5d                      pop    %rbp
->  400a39:       c3                      retq
+```
+0000000000400a09 <c8>:
+  400a09:       55                      push   %rbp
+  400a0a:       48 89 e5                mov    %rsp,%rbp
+  400a0d:       8b 05 4d 09 20 00       mov    0x20094d(%rip),%eax        # 601360 <mem>
+  400a13:       83 c0 09                add    $0x9,%eax
+  400a16:       89 05 44 09 20 00       mov    %eax,0x200944(%rip)        # 601360 <mem>
+  400a1c:       bf 80 12 60 00          mov    $0x601280,%edi
+  400a21:       e8 12 fd ff ff          callq  400738 <sub_9F36>
+  400a26:       48 89 c6                mov    %rax,%rsi
+  400a29:       bf 0c 0c 40 00          mov    $0x400c0c,%edi
+  400a2e:       b8 00 00 00 00          mov    $0x0,%eax
+  400a33:       e8 c8 fa ff ff          callq  400500 <printf@plt>
+  400a38:       5d                      pop    %rbp
+  400a39:       c3                      retq
+```
 
 Hmm it's messing with the data at 0x601360 as denoted by the # comments. Let's take a look what is around that address
 
@@ -125,35 +127,39 @@ Hmm it's messing with the data at 0x601360 as denoted by the # comments. Let's t
 
 We can see that there are interesting values before 0x601360
 
->0x601320 <b3>:  0x0e535642      0x0e525c53      0x540e6157      0x6453605d
->0x601330 <b3+16>:       0x0e1c6053      0x0e626330      0x5362544f      0x56620e60
->0x601340 <b3+32>:       0x0e1a624f      0x15635d67      0x550e5360      0x0e525d5d
->0x601350 <b3+48>:       0x550e5d62      0x00001c5d      0x00000000      0x00000000
+````
+0x601320 <b3>:  0x0e535642      0x0e525c53      0x540e6157      0x6453605d
+0x601330 <b3+16>:       0x0e1c6053      0x0e626330      0x5362544f      0x56620e60
+0x601340 <b3+32>:       0x0e1a624f      0x15635d67      0x550e5360      0x0e525d5d
+0x601350 <b3+48>:       0x550e5d62      0x00001c5d      0x00000000      0x00000000
+```
 
 b3? That sounds familiar. It's the local data as shown from nm. And since we see printf later on in the function c8, we can deduce that something around here may be the flag! So we look at more data before it and look for the hex values for flag: `66 6c 61 67`
 
 >x/80x 0x601260
 
->0x601260:       0x00000000      0x00000000      0x00000000      0x00000000
->0x601270:       0x00000000      0x00000000      0x00000000      0x00000000
->0x601280 \<b>:   0x27212c26      0x2932373b      0x291f2534      0x25221f2e
->0x601290 <b+16>:        0x25292e32      0x00003de1      0x00000000      0x00000000
->0x6012a0 <b0>:  0x6162583f      0x62576554      0x13583713      0x54665c43
->0x6012b0 <b0+16>:       0x5b4a1332      0x13661a62      0x67545b67      0x478673d5
->0x6012c0 <b0+32>:       0x6113585b      0x13676b58      0x66586563      0x6158575c
->0x6012d0 <b0+48>:       0x00003267      0x00000000      0x00000000      0x00000000
->0x6012e0 <b1>:  0x5814594b      0x1b62585d      0x59581468      0x6a665967
->0x6012f0 <b1+16>:       0x59361459      0x595d6266      0xa2b0cb22      0x002d6867
->0x601300 <b2+4>:        0x59141300      0x01072303      0x00005913      0x00000000
->0x601310:       0x00000000      0x00000000      0x00000000      0x00000000
->0x601320 <b3>:  0x0e535642      0x0e525c53      0x540e6157      0x6453605d
->0x601330 <b3+16>:       0x0e1c6053      0x0e626330      0x5362544f      0x56620e60
->0x601340 <b3+32>:       0x0e1a624f      0x15635d67      0x550e5360      0x0e525d5d
->0x601350 <b3+48>:       0x550e5d62      0x00001c5d      0x00000000      0x00000000
->0x601360 <mem>: 0x00000000      0x00000000      0x00000000      0x00000000
->0x601370:       0x00322e37      0x3a434347      0x65442820      0x6e616962
->0x601380:       0x342e3420      0x322d372e      0x2e342029      0x00372e34
->0x601390:       0x79732e00      0x6261746d      0x74732e00      0x62617472
+```
+0x601260:       0x00000000      0x00000000      0x00000000      0x00000000
+0x601270:       0x00000000      0x00000000      0x00000000      0x00000000
+0x601280 \<b>:   0x27212c26      0x2932373b      0x291f2534      0x25221f2e
+0x601290 <b+16>:        0x25292e32      0x00003de1      0x00000000      0x00000000
+0x6012a0 <b0>:  0x6162583f      0x62576554      0x13583713      0x54665c43
+0x6012b0 <b0+16>:       0x5b4a1332      0x13661a62      0x67545b67      0x478673d5
+0x6012c0 <b0+32>:       0x6113585b      0x13676b58      0x66586563      0x6158575c
+0x6012d0 <b0+48>:       0x00003267      0x00000000      0x00000000      0x00000000
+0x6012e0 <b1>:  0x5814594b      0x1b62585d      0x59581468      0x6a665967
+0x6012f0 <b1+16>:       0x59361459      0x595d6266      0xa2b0cb22      0x002d6867
+0x601300 <b2+4>:        0x59141300      0x01072303      0x00005913      0x00000000
+0x601310:       0x00000000      0x00000000      0x00000000      0x00000000
+0x601320 <b3>:  0x0e535642      0x0e525c53      0x540e6157      0x6453605d
+0x601330 <b3+16>:       0x0e1c6053      0x0e626330      0x5362544f      0x56620e60
+0x601340 <b3+32>:       0x0e1a624f      0x15635d67      0x550e5360      0x0e525d5d
+0x601350 <b3+48>:       0x550e5d62      0x00001c5d      0x00000000      0x00000000
+0x601360 <mem>: 0x00000000      0x00000000      0x00000000      0x00000000
+0x601370:       0x00322e37      0x3a434347      0x65442820      0x6e616962
+0x601380:       0x342e3420      0x322d372e      0x2e342029      0x00372e34
+0x601390:       0x79732e00      0x6261746d      0x74732e00      0x62617472
+```
 
 If we look at the first hex value that's not 0s, it is `0x27212c26`
 Hmmmmm... `0x27212c26` vs `66 6c 61 67` Seems pretty similar right?
