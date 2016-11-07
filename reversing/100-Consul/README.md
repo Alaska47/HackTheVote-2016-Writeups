@@ -171,3 +171,5 @@ Now we just have to repeat the same thing for the following values of hex and we
 #Flag
 
 >flag{write_in_bernie!}
+
+Note: this method only worked because the encryption of the flag was very simple, but a flag is a flag.
