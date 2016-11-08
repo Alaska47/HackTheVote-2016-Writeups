@@ -2,7 +2,7 @@
 
 We are given this image:
 
-![trump_likes_colors.png](https://s3.amazonaws.com/hackthevote/trump_likes_colors.bcddf8152cf2848c058310655c280a7dbb4f22fcc3687f00a26b6e9a57657dc4.png)
+![trump_likes_colors.png](https://raw.githubusercontent.com/Alaska47/HackTheVote-2016-Writeups/master/forensics/250-Trump-likes-colors/trump_likes_colors.png)
 
 Looking at the problem statement, we can see some characters are capitalized: APNG
 
