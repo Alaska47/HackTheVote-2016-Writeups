@@ -10,7 +10,7 @@ This tells us that the file might be an animated PNG. We can use ffmpeg to extra
 
 `ffmpeg -i trump_likes_colors.png "colors%d.png"`
 
-ffmpeg gives us 16,384 frames from the png file. All the images look like the original image except with the color bars having various lengths. Interestingly enough, 16,384 is a perfect square (128x128).
+ffmpeg gives us 16,384 [frames](https://raw.githubusercontent.com/Alaska47/HackTheVote-2016-Writeups/master/forensics/250-Trump-likes-colors/trump_likes_colors.zip) from the png file. All the images look like the original image except with the color bars having various lengths. Interestingly enough, 16,384 is a perfect square (128x128).
 
 Looking at the next part of the problem statement, we see that the format used to encode the flag is a `esoteric format` leaked by `Danger Mouse`. Searching up `colors esoteric danger mouse` leads us to this [link](http://www.dangermouse.net/esoteric/piet.html). The site links us to an [online interpreter](http://www.bertnase.de/npiet/npiet-execute.php) for the Piet programming language.
 
