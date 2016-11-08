@@ -3,7 +3,7 @@
 
 At his last rally, Trump made an interesting statement:
 
->I know RSA, I have the best RSA
+>I know RSA, I have the best RSA.
 >The more bits I have, the more secure my cyber, and my modulus is YUUUUUUUUUUUUUGE
 >We don't believe his cyber is as secure as he says it is. 
 >See if you can break it for us
@@ -30,7 +30,7 @@ Once we have phi(n), we must compute d by finding the modular multiplicative inv
     e = 65537
     d = PowerMod[e,-1,phi] (* -1 denotes inverse *)
 
-We now have our tuple, (c,d,n), and we proceed with the normal RSA decryption process: m = c^d mod n.  
+We now have our tuple, (c,d,n), and we proceed with the normal RSA decryption process: m = c<sup>d</sup> mod n.  
 
 	m = BaseForm[PowerMod[c,d,n],16] ( * This took about 3 hours, but could be sped up with usage of the Chinese Remainder Theorem * )
 
@@ -42,11 +42,12 @@ It looks as if m begins with 474946383961 - that's the GIF magic number.  Thus, 
 
 We see a picture of Trump with the Chinese flag in the background, and the flag l33tly displayed (though we didn't solve it in the l33t manner):
 
-    flag{s4ved_by_CH1N4_0nc3_aga1n}
 
+![flag](https://github.com/Alaska47/HackTheVote-2016-Writeups/blob/master/crypto/250-Best-RSA/flag.gif)
+    
 #Flag
 
-flag{s4ved_by_CH1N4_0nc3_aga1n}
+    flag{s4ved_by_CH1N4_0nc3_aga1n}
 
 
 Yes, it is a pun ;)
