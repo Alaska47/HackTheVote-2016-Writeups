@@ -40,7 +40,7 @@ It looks as if m begins with 474946383961 - that's the GIF magic number.  Thus, 
 	BinaryWrite["flag.gif", IntegerDigits[m, 256]]
 	Close["flag.gif"]
 
-We see a picture of Trump with the Chinese flag in the background, and the flag l33tly displayed (though we didn't solve it in the l33t manner):
+We see a picture of Trump with the Chinese flag in the background, and the flag l33tly displayed:
 
 
 ![flag](https://github.com/Alaska47/HackTheVote-2016-Writeups/blob/master/crypto/250-Best-RSA/flag.gif)
@@ -50,4 +50,4 @@ We see a picture of Trump with the Chinese flag in the background, and the flag 
     flag{s4ved_by_CH1N4_0nc3_aga1n}
 
 
-Yes, it is a pun ;)
+Yes, it is a pun - a pity we didn't use CRT :(
